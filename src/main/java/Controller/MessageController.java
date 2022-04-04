@@ -9,6 +9,7 @@ import javax.websocket.server.ServerEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -33,8 +34,17 @@ public class MessageController {
     }
 
     @OnMessage
-    public void OnMessage(Session session, String message) {
-
+    public void OnMessage(Session session, String message) throws IOException {
+        users.forEach(user -> {
+            if(user == session) {
+                return;
+            }
+            try {
+                user.getBasicRemote().sendText(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @OnError
