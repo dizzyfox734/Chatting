@@ -1,0 +1,23 @@
+{{>layout/header}}
+
+<div id="login">
+    <h1>Input username.</h1>
+    <form id="loginForm" name="loginForm">
+        <input type="text" id="username" placeholder="Username" autocomplete="off"/>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div id="chat" class="hidden">
+    <h2>WebSocket Chat</h2>
+    <div id="chattingBox">
+
+    </div>
+    <form id="messageForm">
+        <input type="text" id="message" placeholder="Type message." autocomplete="off"/>
+        <button type="submit">Send</button>
+    </form>
+
+</div>
+
+{{>layout/footer}}
